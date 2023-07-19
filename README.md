@@ -41,3 +41,5 @@ Bill Payment Reminder: A React Native app that utilizes calendar and push notifi
 - Dark and Light Modes
 - Well thought through UX
   - Be considerate of individuals that primarily use their thumbs, left or right hands
+
+  
