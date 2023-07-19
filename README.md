@@ -33,3 +33,11 @@ Bill Payment Reminder: A React Native app that utilizes calendar and push notifi
 - Your dev environment should be properly working
 - Other users should be able to scan your QR and see your app on any device
 - All of your core "features" should be working properly
+
+### Milestone 2 - Product Delivery
+
+- Quality and Thoughtful Styling using css-in-js
+- Right sized tap targets, good contrast
+- Dark and Light Modes
+- Well thought through UX
+  - Be considerate of individuals that primarily use their thumbs, left or right hands
