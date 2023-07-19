@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, Button, Platform, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import * as Calendar from 'expo-calendar';
+import DatePicker from 'react-native-datepicker';
 
 export default function App() {
   const [billName, setBillName] = useState('');
@@ -44,33 +45,66 @@ export default function App() {
       }
       const token = (await Notifications.getExpoPushTokenAsync()).data;
       console.log(token);
-      setExpoPushToken(token);
     };
 
     registerForPushNotificationsAsync();
   }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Bill Name:</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Bill Reminder</Text>
+      <Text style={styles.label}>Bill Name:</Text>
       <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+        style={styles.input}
         onChangeText={(text) => setBillName(text)}
         value={billName}
       />
-      <Text>Amount:</Text>
+      <Text style={styles.label}>Amount:</Text>
       <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+        style={styles.input}
         onChangeText={(text) => setAmount(text)}
         value={amount}
       />
-      <Text>Due Date:</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
-        onChangeText={(text) => setDueDate(text)}
-        value={dueDate}
+      <Text style={styles.label}>Due Date:</Text>
+      <DatePicker
+        style={styles.input}
+        date={dueDate}
+        mode="date"
+        placeholder="Select a date"
+        format="YYYY-MM-DD"
+        minDate={new Date()}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        onDateChange={(date) => setDueDate(date)}
       />
       <Button title="Add Bill" onPress={scheduleReminder} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    width: '80%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+});
