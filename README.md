@@ -1,12 +1,11 @@
 # Javascript-401d53-class43
 
-## Learning React Native using:
+## Learning React Native using
 
-![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37) 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
-![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%010101) 
-
+![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%010101)
 
 ## Problem Domain
 
@@ -42,4 +41,8 @@ Bill Payment Reminder: A React Native app that utilizes calendar and push notifi
 - Well thought through UX
   - Be considerate of individuals that primarily use their thumbs, left or right hands
 
-  
+### How to use locally?
+
+- run `npx expo -tunnel` to start the environment
+- scan the qr code with your phone to launch through `Expo Go`
+- To use the App after scanning the QR code, simply enter Bill name, Bill Amont, and Due Date
