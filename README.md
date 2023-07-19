@@ -46,3 +46,4 @@ Bill Payment Reminder: A React Native app that utilizes calendar and push notifi
 - run `npx expo -tunnel` to start the environment
 - scan the qr code with your phone to launch through `Expo Go`
 - To use the App after scanning the QR code, simply enter Bill name, Bill Amont, and Due Date
+- User have option to switch between light mode or dark mode using a toggle
