@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet, Switch } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import * as Calendar from 'expo-calendar';
 import DatePicker from 'react-native-datepicker';
@@ -9,6 +9,7 @@ export default function App() {
   const [amount, setAmount] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [expoPushToken, setExpoPushToken] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const scheduleReminder = async () => {
     const { status } = await Calendar.requestCalendarPermissionsAsync();
@@ -50,24 +51,31 @@ export default function App() {
     registerForPushNotificationsAsync();
   }, []);
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const containerStyle = isDarkMode ? styles.darkContainer : styles.lightContainer;
+  const textStyle = isDarkMode ? styles.darkText : styles.lightText;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Bill Reminder</Text>
-      <Text style={styles.label}>Bill Name:</Text>
+    <View style={[styles.container, containerStyle]}>
+      <Text style={[styles.title, textStyle]}>Bill Reminder</Text>
+      <Text style={[styles.label, textStyle]}>Bill Name:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, textStyle]}
         onChangeText={(text) => setBillName(text)}
         value={billName}
       />
-      <Text style={styles.label}>Amount:</Text>
+      <Text style={[styles.label, textStyle]}>Amount:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, textStyle]}
         onChangeText={(text) => setAmount(text)}
         value={amount}
       />
-      <Text style={styles.label}>Due Date:</Text>
+      <Text style={[styles.label, textStyle]}>Due Date:</Text>
       <DatePicker
-        style={styles.input}
+        style={[styles.input, textStyle]}
         date={dueDate}
         mode="date"
         placeholder="Select a date"
@@ -78,6 +86,10 @@ export default function App() {
         onDateChange={(date) => setDueDate(date)}
       />
       <Button title="Add Bill" onPress={scheduleReminder} />
+      <View style={styles.toggleContainer}>
+        <Text style={[styles.label, textStyle]}>Dark Mode:</Text>
+        <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+      </View>
     </View>
   );
 }
@@ -89,6 +101,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#ffffff',
   },
+  lightContainer: {
+    backgroundColor: '#ffffff',
+  },
+  darkContainer: {
+    backgroundColor: '#222222',
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -99,6 +117,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
+  lightText: {
+    color: '#000000',
+  },
+  darkText: {
+    color: '#ffffff',
+  },
   input: {
     height: 40,
     width: '80%',
@@ -106,5 +130,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  toggleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
   },
 });
